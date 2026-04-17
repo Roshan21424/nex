@@ -1,0 +1,44 @@
+services:
+  app:
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    command: [
+     "--innodb-buffer-pool-size=20M",
+     "--innodb-log-buffer-size=4M",
+     "--performance-schema=OFF",
+     "--max-connections=5",
+     "--thread-cache-size=4",
+     "--tmp-table-size=8M",
+     "--max-heap-table-size=8M",
+     "--table-open-cache=100",
+     "--innodb-flush-log-at-trx-commit=2",
+     "--innodb-file-per-table=1",
+     "--innodb-io-capacity=100",
+     "--skip-name-resolve"
+     ]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p123456"]
+      interval: 5s
+      retries: 10
+      timeout: 3s
+
+volumes:
+  mysql-data:

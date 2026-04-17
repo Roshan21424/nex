@@ -1,0 +1,88 @@
+########################################
+#  GENERAL
+########################################
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+
+########################################
+#  ENV / SECRETS (IMPORTANT)
+########################################
+.env
+.env.*
+*.env
+
+# Backend secrets
+/backend/src/main/resources/application.properties
+
+# Frontend secrets
+/frontend/.env
+/frontend/.env.*
+
+########################################
+#  SPRING BOOT (BACKEND)
+########################################
+
+# Maven
+/backend/target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Gradle (if used)
+/backend/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# IDE (backend)
+/backend/.idea/
+/backend/*.iml
+/backend/*.iws
+/backend/*.ipr
+
+# Eclipse / STS
+/backend/.project
+/backend/.classpath
+/backend/.settings/
+/backend/.springBeans
+/backend/.sts4-cache
+
+########################################
+#  REACT (FRONTEND)
+########################################
+
+# Node modules
+/frontend/node_modules/
+
+# Build output
+/frontend/build/
+/frontend/dist/
+
+# Logs
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+# IDE (frontend)
+/frontend/.idea/
+/frontend/.vscode/
+/frontend/*.iml
+
+########################################
+#  TEST / COVERAGE
+########################################
+coverage/
+*.lcov
+
+########################################
+#  DOCKER (optional)
+########################################
+docker-compose.override.yml
+
+########################################
+#  OPTIONAL (if you accidentally added keys before)
+########################################
+*.pem
+*.key
+*.crt
